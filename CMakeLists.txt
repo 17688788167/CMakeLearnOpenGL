@@ -17,6 +17,9 @@ set(GLFW_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment/glfw/include)
 set(GLFW_LIB glfw3.lib)
 set(GLAD_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment/glad/include)
 set(GLAD_SRC ${PROJECT_SOURCE_DIR}/environment/glad/src/glad.c)
+set(SRC ${PROJECT_SOURCE_DIR}/src)
+set(START ${SRC}/1.Start)
+#D:\CMakeTest\CMakeLearnOpenGL\src\1.1.Start.cpp
 
 #添加依赖的头文件
 include_directories(
@@ -30,6 +33,7 @@ link_directories(${PROJECT_SOURCE_DIR}/environment/glfw/lib-vc2019)
 #收集文件
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/*.cpp)
 file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/*.h)
+file(GLOB SRC_Start ${START}/*.cpp)
 
 # 将源代码添加到此项目的可执行文件。这个貌似只能加一次，搜集好所有的，都加进去，注意glad.c
 add_executable (CMakeTest
@@ -39,6 +43,20 @@ add_executable (CMakeTest
 	"CMakeTest.h"
 	${GLAD_SRC}
 )
+target_link_libraries(${PROJECT_NAME} ${GLFW_LIB})
+
+add_executable (CMakeTest1
+	${SRC_Start}
+)
+target_link_libraries(CMakeTest1 ${GLFW_LIB})
+#foreach(exe ${SRC_Start})
+
+#string (REPLACE ".cpp" "" exename ${exe})
+#add_executable(${exename} ${exe})
+
+#endforeach(exe ${SRC_Start})
+
+
 
 #生成可执行程序
 #add_executable(${PROJECT_NAME}
@@ -46,8 +64,5 @@ add_executable (CMakeTest
 #	${SOURCES}
 #	${GLAD_INCLUDE_DIR}/../src/glad.c
 #)
-
+#target_link_libraries(${PROJECT_NAME} ${GLFW_LIB})
 #此处添加依赖库
-target_link_libraries(${PROJECT_NAME}
-	${GLFW_LIB}
-)
