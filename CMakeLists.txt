@@ -36,7 +36,7 @@ file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/*.h)
 file(GLOB SRC_Start ${START}/*.cpp)
 
 # 将源代码添加到此项目的可执行文件。这个貌似只能加一次，搜集好所有的，都加进去，注意glad.c
-add_executable (CMakeTest
+add_executable (${PROJECT_NAME}
 	${HEADERS}
 	${SOURCES}
 	"CMakeTest.cpp"
@@ -45,16 +45,20 @@ add_executable (CMakeTest
 )
 target_link_libraries(${PROJECT_NAME} ${GLFW_LIB})
 
-add_executable (CMakeTest1
-	${SRC_Start}
-)
-target_link_libraries(CMakeTest1 ${GLFW_LIB})
+
+foreach(exe ${SRC_Start})
+string (REPLACE ${START} "" exename ${exe})
+string (REPLACE "/" "" exename ${exename})
+#add_executable (CMakeTest1 ${SRC_Start})
+#target_link_libraries(CMakeTest1 ${GLFW_LIB})
+add_executable (${exename} ${exe})
+target_link_libraries(${exename} ${GLFW_LIB})
 #foreach(exe ${SRC_Start})
 
 #string (REPLACE ".cpp" "" exename ${exe})
 #add_executable(${exename} ${exe})
 
-#endforeach(exe ${SRC_Start})
+endforeach(exe ${SRC_Start})
 
 
 
