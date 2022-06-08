@@ -16,6 +16,11 @@ set(GLFW_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment/glfw/include)
 # 这个不用指明路径，有库目录指定就行
 set(GLFW_LIB glfw3.lib)
 set(GLAD_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment/glad/include)
+set(GLM_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment/glm)
+set(ENVIRONMENT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment)
+set(IMAGE_DIR ${PROJECT_SOURCE_DIR}/environment/image)
+
+
 set(GLAD_SRC ${PROJECT_SOURCE_DIR}/environment/glad/src/glad.c)
 set(SRC ${PROJECT_SOURCE_DIR}/src)
 set(START ${SRC}/1.Start)
@@ -25,6 +30,10 @@ set(START ${SRC}/1.Start)
 include_directories(
     ${GLFW_INCLUDE_DIR}
     ${GLAD_INCLUDE_DIR}
+	${GLM_INCLUDE_DIR}
+	${SRC}
+	${ENVIRONMENT_INCLUDE_DIR}
+	${IMAGE_DIR}
 )
 
 # 添加库目录
@@ -42,31 +51,18 @@ add_executable (${PROJECT_NAME}
 	"CMakeTest.cpp"
 	"CMakeTest.h"
 	${GLAD_SRC}
-)
+ "src/2.lighting/1.colors/color.cpp" "src/Data.h" "src/Camera.h" "src/Actor.h")
 target_link_libraries(${PROJECT_NAME} ${GLFW_LIB})
 
 
 foreach(exe ${SRC_Start})
 string (REPLACE ${START} "" exename ${exe})
 string (REPLACE "/" "" exename ${exename})
-#add_executable (CMakeTest1 ${SRC_Start})
-#target_link_libraries(CMakeTest1 ${GLFW_LIB})
-add_executable (${exename} ${exe})
-target_link_libraries(${exename} ${GLFW_LIB})
-#foreach(exe ${SRC_Start})
 
-#string (REPLACE ".cpp" "" exename ${exe})
-#add_executable(${exename} ${exe})
+add_executable (${exename} ${exe} "src/2.lighting/1.colors/color.cpp" "src/Data.h" "src/Camera.h" "src/Actor.h")
+target_link_libraries(${exename} ${GLFW_LIB})
 
 endforeach(exe ${SRC_Start})
 
 
 
-#生成可执行程序
-#add_executable(${PROJECT_NAME}
-#	${HEADERS}
-#	${SOURCES}
-#	${GLAD_INCLUDE_DIR}/../src/glad.c
-#)
-#target_link_libraries(${PROJECT_NAME} ${GLFW_LIB})
-#此处添加依赖库
