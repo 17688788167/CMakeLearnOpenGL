@@ -29,12 +29,12 @@ public:
 		std::ifstream vShaderFile;
 		std::ifstream fShaderFile;
 
-		//��֤ifstream��������׳��쳣��
+	
 		vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		try
 		{
-			// ���ļ�
+		
 			vShaderFile.open(vertexPath);
 			fShaderFile.open(fragmentPath);
 			std::stringstream vShaderStream, fShaderStream;

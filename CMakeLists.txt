@@ -59,7 +59,7 @@ foreach(exe ${SRC_Start})
 string (REPLACE ${START} "" exename ${exe})
 string (REPLACE "/" "" exename ${exename})
 
-add_executable (${exename} ${exe} "src/2.lighting/1.colors/color.cpp" "src/Data.h" "src/Camera.h" "src/Actor.h")
+add_executable (${exename} ${exe} "src/2.lighting/1.colors/color.cpp" "src/Data.h" "src/Camera.h" "src/Actor.h" 	${GLAD_SRC})
 target_link_libraries(${exename} ${GLFW_LIB})
 
 endforeach(exe ${SRC_Start})
