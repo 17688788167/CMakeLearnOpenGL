@@ -19,12 +19,56 @@ set(GLAD_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment/glad/include)
 set(GLM_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment/glm)
 set(ENVIRONMENT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/environment)
 set(IMAGE_DIR ${PROJECT_SOURCE_DIR}/environment/image)
-
+set(LEARNOPENGL_DIR ${PROJECT_SOURSE_DIR}/environment/learnopengl)
 
 set(GLAD_SRC ${PROJECT_SOURCE_DIR}/environment/glad/src/glad.c)
 set(SRC ${PROJECT_SOURCE_DIR}/src)
 set(START ${SRC}/1.Start)
+set(LIGHTING ${SRC}/2.lighting)
 #D:\CMakeTest\CMakeLearnOpenGL\src\1.1.Start.cpp
+
+
+
+# 添加库目录
+link_directories(${PROJECT_SOURCE_DIR}/environment/glfw/lib-vc2019)
+
+#收集文件
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/*.cpp)
+file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/*.h)
+file(GLOB SRC_Start ${START}/*.cpp)
+file(GLOB SRC_Light ${LIGHTING}/*.cpp) 
+
+
+
+# 将源代码添加到此项目的可执行文件。这个貌似只能加一次，搜集好所有的，都加进去，注意glad.c
+add_executable (${PROJECT_NAME}
+	${HEADERS}
+	${SOURCES}
+	"CMakeTest.cpp"
+	"CMakeTest.h"
+	${GLAD_SRC}
+ "src/2.lighting/1.colors/color.cpp" )
+target_link_libraries(${PROJECT_NAME} ${GLFW_LIB})
+
+
+foreach(exe ${SRC_Start})
+string (REPLACE ${START} "" exename ${exe})
+string (REPLACE "/" "" exename ${exename})
+
+add_executable (${exename} ${exe} 	${GLAD_SRC})
+target_link_libraries(${exename} ${GLFW_LIB})
+
+endforeach(exe ${SRC_Start})
+
+
+foreach(exe ${SRC_Light})
+string (REPLACE ${LIGHTING "" exename ${exe})
+string (REPLACE "/" "" exename ${exename})
+add_executable (${exename} ${exe} 	${GLAD_SRC})
+
+target_link_libraries(${exename} ${GLFW_LIB})
+
+endforeach(exe ${SRC_Start})
 
 #添加依赖的头文件
 include_directories(
@@ -34,35 +78,6 @@ include_directories(
 	${SRC}
 	${ENVIRONMENT_INCLUDE_DIR}
 	${IMAGE_DIR}
+	${LEARNOPENGL_DIR}
+	${START}
 )
-
-# 添加库目录
-link_directories(${PROJECT_SOURCE_DIR}/environment/glfw/lib-vc2019)
-
-#收集文件
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/*.cpp)
-file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/*.h)
-file(GLOB SRC_Start ${START}/*.cpp)
-
-# 将源代码添加到此项目的可执行文件。这个貌似只能加一次，搜集好所有的，都加进去，注意glad.c
-add_executable (${PROJECT_NAME}
-	${HEADERS}
-	${SOURCES}
-	"CMakeTest.cpp"
-	"CMakeTest.h"
-	${GLAD_SRC}
- "src/2.lighting/1.colors/color.cpp" "src/Data.h" "src/Camera.h" "src/Actor.h")
-target_link_libraries(${PROJECT_NAME} ${GLFW_LIB})
-
-
-foreach(exe ${SRC_Start})
-string (REPLACE ${START} "" exename ${exe})
-string (REPLACE "/" "" exename ${exename})
-
-add_executable (${exename} ${exe} "src/2.lighting/1.colors/color.cpp" "src/Data.h" "src/Camera.h" "src/Actor.h" 	${GLAD_SRC})
-target_link_libraries(${exename} ${GLFW_LIB})
-
-endforeach(exe ${SRC_Start})
-
-
-

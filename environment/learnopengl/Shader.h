@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <learnopengl/Data.h>
 
 using namespace std;
 enum  ShaderCompileType
@@ -22,6 +23,11 @@ public:
 	unsigned int ID;
 
 	Shader() {}
+	/// <summary>
+	/// Shader的构造函数
+	/// </summary>
+	/// <param name="vertexPath">相对于src的顶点着色器路径</param>
+	/// <param name="fragmentPath">相对于src的片元着色器路径</param>
 	Shader(const char* vertexPath, const char* fragmentPath)
 	{
 		std::string vertexCode;
@@ -29,14 +35,19 @@ public:
 		std::ifstream vShaderFile;
 		std::ifstream fShaderFile;
 
-	
 		vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		try
 		{
 		
-			vShaderFile.open(vertexPath);
-			fShaderFile.open(fragmentPath);
+			vShaderFile.open(Data::GetAbsolutePath(vertexPath));
+			fShaderFile.open(Data::GetAbsolutePath(fragmentPath));
+ 
+			if (vShaderFile.is_open())
+			{
+				std::cout << "vertexPath is open" << std::endl;
+			}
+
 			std::stringstream vShaderStream, fShaderStream;
 
 			vShaderStream << vShaderFile.rdbuf();
@@ -47,6 +58,7 @@ public:
 
 			vertexCode = vShaderStream.str();
 			fragmentCode = fShaderStream.str();
+			std::cout <<"1111111111111" << vertexCode << std::endl;
 		}
 		catch (ifstream::failure e)
 		{
@@ -160,6 +172,5 @@ private:
 		}
 	}
 };
-
 
 #endif

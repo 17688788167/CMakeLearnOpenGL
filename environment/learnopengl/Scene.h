@@ -5,15 +5,14 @@
 #include <glm/gtx/quaternion.hpp>
 #include <GLFW/glfw3.h>
 
-
-
-const float YAW = -90.0f;
-const float PITCH = 0.0f;
-const float SPEED = 2.5f;
-const float SENSITIVITY = 0.1f;
-const float FOV = 45.0f;
-class Actor
+class Scene 
 {
+	const float YAW = -90.0f;
+	const float PITCH = 0.0f;
+	const float SPEED = 2.5f;
+	const float SENSITIVITY = 0.1f;
+	const float FOV = 45.0f;
+
 public:
 	glm::quat MyRotation;
 	glm::vec3 MyPosition;
@@ -27,16 +26,13 @@ public:
 		//glm::quat();
 	}
 
-	Actor()
-	{
-
-	}
-
-	Actor(const glm::quat q)
+	Scene(const glm::quat q)
 	{
 		glm::vec3 eulerAngle = glm::eulerAngles(q);
 		ShowPitch = eulerAngle.x;
 		ShowYaw = eulerAngle.y;
 		ShowRoll = eulerAngle.z;
 	}
+
+
 };

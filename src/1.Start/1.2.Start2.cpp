@@ -1,11 +1,13 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
+#include <learnopengl/Actor.h>
+#include <learnopengl/Data.h>
+#include <learnopengl/Shader.h>
 
 
-#include<iostream>
-#include "Actor.h"
-#include "Data.h"
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -33,6 +35,7 @@ int main()
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
+
 	//创建一个窗口对象,宽和高作为它的前两个参数,第三个参数表示这个窗口的名称（标题）
 	GLFWwindow* window = glfwCreateWindow(Data::SCR_WIDTH, Data::SCR_HEIGHT, "CmakeOpenGL", NULL, NULL);
 	if (window == NULL)
@@ -51,6 +54,25 @@ int main()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+
+	//生成一个顶点缓冲VBO对象
+	unsigned int VBO1;
+	glGenBuffers(1, &VBO1);
+	//将新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
+	glBindBuffer(GL_ARRAY_BUFFER, VBO1);
+
+	unsigned int VBO2;
+	glGenBuffers(1, &VBO2);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO2);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Data::vertices1), Data::vertices1, GL_STATIC_DRAW);
+
+	std::cout << sizeof(Data::vertices1) << std::endl;
+
+	Shader shader("startShader.vs", "startShader.fs");
+	shader.use();
+
+
 
 	while (!glfwWindowShouldClose(window))
 	{
