@@ -11,13 +11,13 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	//0,0йг╢╟©з╣двСоб╫г
+	//0,0О©╫г╢О©╫О©╫з╣О©╫О©╫О©╫О©╫б╫О©╫
 	glViewport(0, 0, width, height);
 }
 
 void processInput(GLFWwindow* window)
 {
-	//╟╢обesc╪ЭмкЁЖ
+	//О©╫О©╫О©╫О©╫escО©╫О©╫О©╫кЁО©╫
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 }
@@ -25,9 +25,9 @@ void processInput(GLFWwindow* window)
 
 int main()
 {
-	//ЁУй╪╩╞GLFW
+	//О©╫О©╫й╪О©╫О©╫GLFW
 	glfwInit();
-	//еДжцGLFW
+	//О©╫О©╫О©╫О©╫GLFW
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -36,16 +36,16 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-	//╢╢╫╗р╩╦Ж╢╟©з╤тоС,©М╨м╦ъвВн╙кЭ╣дг╟а╫╦Ж╡нйЩ,╣зхЩ╦Ж╡нйЩ╠Мй╬уБ╦Ж╢╟©з╣дцШЁфё╗╠ЙлБё╘
+	//О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫з╤О©╫О©╫О©╫,О©╫О©╫м╦О©╫О©╫О©╫н╙О©╫О©╫О©╫О©╫г╟О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫,О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╬О©╫О©╫О©╫О©╫О©╫О©╫з╣О©╫О©╫О©╫О©╫фёО©╫О©╫О©╫О©╫Бё╘
 	GLFWwindow* window = glfwCreateWindow(Data::SCR_WIDTH, Data::SCR_HEIGHT, "CmakeOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
 		glfwTerminate();
 		return -1;
 	}
-	//м╗ж╙GLFW╫╚нрцг╢╟©з╣диообндиХжцн╙╣╠г╟оъЁл╣джВиообнд
+	//м╗ж╙GLFWО©╫О©╫О©╫О©╫О©╫г╢О©╫О©╫з╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫н╙О©╫О©╫г╟О©╫ъЁл╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	glfwMakeContextCurrent(window);
-	//пХр╙╨╞йЩё╛╦ФкъGLFWнрцгоёмШц©╣╠╢╟©з╣ВуШ╢Сп║╣дй╠╨Р╣ВсцуБ╦Ж╨╞йЩ,╣╠╢╟©з╠╩╣зр╩╢нотй╬╣дй╠╨Рframebuffer_size_callbackр╡╩А╠╩╣Всц
+	//О©╫О©╫р╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫GLFWО©╫О©╫О©╫О©╫оёО©╫О©╫ц©О©╫О©╫О©╫О©╫О©╫з╣О©╫О©╫О©╫О©╫О©╫п║О©╫О©╫й╠О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫,О©╫О©╫О©╫О©╫О©╫з╠О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫й╬О©╫О©╫й╠О©╫О©╫framebuffer_size_callbackр╡О©╫А╠╩О©╫О©╫О©╫О©╫
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 		// glad: load all OpenGL function pointers
@@ -55,10 +55,10 @@ int main()
 		return -1;
 	}
 
-	//иЗЁир╩╦Ж╤╔╣Ц╩╨ЁЕVBO╤тоС
+	//О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫Ц╩╨О©╫О©╫VBOО©╫О©╫О©╫О©╫
 	unsigned int VBO1;
 	glGenBuffers(1, &VBO1);
-	//╫╚пб╢╢╫╗╣д╩╨ЁЕ╟С╤╗╣╫GL_ARRAY_BUFFERд©╠Йио
+	//О©╫О©╫О©╫б╢О©╫О©╫О©╫О©╫д╩О©╫О©╫О©╫С╤╗╣О©╫GL_ARRAY_BUFFERд©О©╫О©╫О©╫О©╫
 	glBindBuffer(GL_ARRAY_BUFFER, VBO1);
 
 	unsigned int VBO2;
@@ -78,13 +78,13 @@ int main()
 	{
 		processInput(window);
 
-		glClearColor(0.2, 0.3, 0.3, 1.0);//иХжцгЕ©уфад╩кЫсц╣дяуи╚
-		glClear(GL_COLOR_BUFFER_BIT);//гЕЁЩяуи╚╩╨ЁЕ
+		glClearColor(0.2, 0.3, 0.3, 1.0);//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╩О©╫О©╫О©╫ц╣О©╫О©╫О©╫и╚
+		glClear(GL_COLOR_BUFFER_BIT);//О©╫О©╫О©╫О©╫О©╫и╚О©╫О©╫О©╫О©╫
 
 
-		//╨╞йЩ╩А╫╩╩╩яуи╚╩╨ЁЕё╗кЭйгр╩╦Ж╢╒╢ФвеGLFW╢╟©зц©р╩╦ЖоЯкьяуи╚ж╣╣д╢С╩╨ЁЕё╘ё╛кЭтзуБр╩╣Э╢Зжп╠╩сцю╢╩Фжфё╛╡╒гр╫╚╩АвВн╙йДЁЖотй╬тзфад╩ио║ё
+		//О©╫О©╫О©╫О©╫О©╫А╫╩О©╫О©╫О©╫О©╫и╚О©╫О©╫О©╫Её╗О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫GLFWО©╫О©╫О©╫О©╫ц©р╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫и╚ж╣О©╫д╢С╩╨ЁЕё╘О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫О©╫О©╫п╠О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫фёО©╫О©╫О©╫О©╫р╫О©╫О©╫О©╫О©╫О©╫н╙О©╫О©╫О©╫О©╫О©╫й╬О©╫О©╫О©╫О©╫д╩О©╫о║О©╫
 		glfwSwapBuffers(window);
-		//╨╞йЩ╪Л╡Испц╩сп╢╔╥╒й╡ц╢йб╪Чё╗╠ххГ╪ЭелйДхК║╒йС╠Йрф╤╞╣хё╘║╒╦Эпб╢╟©зв╢л╛ё╛╡╒╣Всц╤тс╕╣д╩ь╣В╨╞йЩё╗©иртм╗╧Щ╩ь╣В╥╫╥╗йж╤╞иХжцё╘║ё
+		//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ц╩О©╫п╢О©╫О©╫О©╫й╡ц╢О©╫б╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫К║╒О©╫О©╫О©╫О©╫ф╤О©╫О©╫хёО©╫О©╫О©╫О©╫О©╫О©╫б╢О©╫О©╫О©╫в╢л╛О©╫О©╫О©╫О©╫О©╫О©╫О©╫ц╤О©╫с╕О©╫д╩ь╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫м╗О©╫О©╫О©╫ь╣О©╫О©╫О©╫О©╫О©╫О©╫ж╤О©╫О©╫О©╫О©╫цёО©╫О©╫О©╫
 		glfwPollEvents();
 	}
 

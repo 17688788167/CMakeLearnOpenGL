@@ -12,7 +12,7 @@ class Data
 public:
 	constexpr static unsigned int SCR_WIDTH = 800;
 	constexpr static unsigned int SCR_HEIGHT = 600;
-	constexpr static char *relativePath= "../../../";
+	constexpr static char* relativePath = "../../../";
 	constexpr static float vertices1[] = {
 	-0.5f, -0.5f, 0.0f,
 	 0.5f, -0.5f, 0.0f,
@@ -25,6 +25,50 @@ public:
 	 0.0f, 0.5f, 0.0f
 	};
 
+
+	constexpr static  float verticesAndTexCoords[] = {
+	 -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+	};
 
 	constexpr static  float vertices[] = {
 		-0.5f, -0.5f, -0.5f,
@@ -70,6 +114,9 @@ public:
 		-0.5f,  0.5f, -0.5f,
 	};
 
+
+
+
 	static std::string GetAbsolutePath(const char* relaPath)
 	{
 		std::string pathTemp = relaPath;
@@ -82,11 +129,11 @@ public:
 		buffer = getcwd(NULL, 0);
 		if (buffer == NULL)
 		{
-			cout << "¶ÁÈ¡Â·¾¶Ê§°Ü" << endl;
+			//cout << "ï¿½ï¿½È¡Â·ï¿½ï¿½Ê§ï¿½ï¿½" << endl;
 		}
 		else
 		{
-			cout << "¶ÁÈ¡Â·¾¶³É¹¦" << endl;
+			cout << "ï¿½ï¿½È¡Â·ï¿½ï¿½ï¿½É¹ï¿½" << endl;
 			cout << buffer << endl;
 		}
 
@@ -95,11 +142,11 @@ public:
 		ifs.open(GetAbsolutePath(relaPath), ios::in);
 		if (!ifs.is_open())
 		{
-			cout << "ÎÄ¼þ´ò¿ªÊ§°Ü£¡\a" << GetAbsolutePath(relaPath) <<endl;
+			cout << "ï¿½Ä¼ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½\a" << GetAbsolutePath(relaPath) << endl;
 		}
 		else
 		{
-			cout << "ÎÄ¼þ´ò¿ª³É¹¦£¡\a" << endl;
+			cout << "ï¿½Ä¼ï¿½ï¿½ò¿ª³É¹ï¿½ï¿½ï¿½\a" << endl;
 		}
 		char* str = "";
 		char c;
@@ -108,6 +155,6 @@ public:
 			cout << c;
 		}
 		cout << endl;
-		
+
 	}
 };
